@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_dashbord/sitelayout.dart';
-<<<<<<< HEAD
-
-// #dd
-=======
-// ssdgg
->>>>>>> dbe8cd13d0c95440404c72fd08f813d60df6ef0a
 void main() {
   runApp(const MyApp());
 }
