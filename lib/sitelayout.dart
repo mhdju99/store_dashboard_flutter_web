@@ -9,7 +9,7 @@ class SiteLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("data"),
+        title: Text("jomaat"),
         elevation: 0,
         backgroundColor: Colors.white,
       ),
