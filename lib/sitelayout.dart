@@ -1,31 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:store_dashbord/helper/responsiveness.dart';
+import 'package:store_dashbord/widgets/larg_screen.dart';
+import 'package:store_dashbord/widgets/small_screen.dart';
+import 'package:store_dashbord/widgets/top_nav.dart';
 
 class SiteLayout extends StatelessWidget {
-  const SiteLayout({super.key});
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  SiteLayout({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("jomaat"),
-        elevation: 0,
-        backgroundColor: Colors.white,
-      ),
-      body: Row(
-        children: [
-          Expanded(
-              child: Container(
-            color: Colors.green,
-          )),
-          Expanded(
-              flex: 5,
-              child: Container(
-                color: Colors.blue,
-              ))
-        ],
-      ),
-    );
+      extendBodyBehindAppBar: T,
+        key: scaffoldKey,
+        appBar: topNavigationBar(context, scaffoldKey),
+        // drawer: const Drawer(),
+        body: LargScreen());
+    // ResponsiveWidget(
+    //   largScreen: LargScreen(),
+    //   smallScreen: const SmallScreen(),
+    // ));
   }
 }
