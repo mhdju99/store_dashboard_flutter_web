@@ -1,6 +1,9 @@
 # store_dashbord
 
 A new Flutter project.
+![image](https://github.com/mhdju99/store_dashboard1/assets/170658259/b2e484f0-8cbb-4a82-8d12-e25b059f78b7)
+![image](https://github.com/mhdju99/store_dashboard1/assets/170658259/e7dfd666-7b41-478a-9596-6ae24f5d44d4)
+![image](https://github.com/mhdju99/store_dashboard1/assets/170658259/ba18d036-3650-4b45-bf50-baa7d1653d71)
 
 ## Getting Started
 
