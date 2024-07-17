@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:store_dashbord/constants/assets.dart';
 import 'package:store_dashbord/constants/style.dart';
+import 'package:store_dashbord/controllers/AuthenticationManager%20.dart';
 import 'package:store_dashbord/helper/responsiveness.dart';
+import 'package:store_dashbord/pages/overview/widget/buttonText.dart';
+import 'package:store_dashbord/widgets/CustomButton.dart';
 import 'package:store_dashbord/widgets/customText.dart';
 
 AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
@@ -71,7 +75,36 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
           const SizedBox(
             width: 10,
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
+          IconButton(
+              onPressed: () {
+                Get.defaultDialog(
+                  title: "k",
+                  content: Column(
+                    children: [
+                      CustomButton(
+                        chaild: const buttonText(label: "logout"),
+                        onPressed: () {
+                          AuthenticationManager cc = Get.find();
+
+                          cc.logOut();
+                          Get.back();
+                        },
+                      ),
+                      CustomButton(
+                        chaild: const buttonText(label: "toke"),
+                        onPressed: () {
+                          AuthenticationManager cc = Get.find();
+
+                          print(cc.getToken().toString());
+                        },
+                      )
+                    ],
+                  ),
+                  textCancel: "undo",
+                  textConfirm: "ADD",
+                );
+              },
+              icon: const Icon(Icons.person)),
           const SizedBox(
             width: 40,
           )

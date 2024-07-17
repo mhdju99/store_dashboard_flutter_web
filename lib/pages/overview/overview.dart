@@ -46,22 +46,22 @@ class largc extends StatelessWidget {
     return Row(
       // scrollDirection: Axis.horizontal,
       children: [
-        const CardLarg(),
-        SizedBox(
-          width: width / 65,
-        ),
-        const CardLarg(),
-        SizedBox(
-          width: width / 65,
-        ),
-        const CardLarg(),
-        SizedBox(
-          width: width / 65,
-        ),
-        const CardLarg(),
-        SizedBox(
-          width: width / 65,
-        )
+        // const CardLarg(),
+        // SizedBox(
+        //   width: width / 65,
+        // ),
+        // const CardLarg(),
+        // SizedBox(
+        //   width: width / 65,
+        // ),
+        // const CardLarg(),
+        // SizedBox(
+        //   width: width / 65,
+        // ),
+        // const CardLarg(),
+        // SizedBox(
+        //   width: width / 65,
+        // )
       ],
     );
   }
@@ -79,33 +79,33 @@ class smallc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            const CardLarg(),
-            SizedBox(
-              width: width / 60,
-            ),
-            const CardLarg(),
-            SizedBox(
-              width: width / 60,
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          children: [
-            const CardLarg(),
-            SizedBox(
-              width: width / 60,
-            ),
-            const CardLarg(),
-            SizedBox(
-              width: width / 60,
-            ),
-          ],
-        )
+        // Row(
+        //   children: [
+        //     const CardLarg(),
+        //     SizedBox(
+        //       width: width / 60,
+        //     ),
+        //     const CardLarg(),
+        //     SizedBox(
+        //       width: width / 60,
+        //     ),
+        //   ],
+        // ),
+        // const SizedBox(
+        //   height: 20,
+        // ),
+        // Row(
+        //   children: [
+        //     const CardLarg(),
+        //     SizedBox(
+        //       width: width / 60,
+        //     ),
+        //     const CardLarg(),
+        //     SizedBox(
+        //       width: width / 60,
+        //     ),
+        //   ],
+        // )
       ],
     );
   }
