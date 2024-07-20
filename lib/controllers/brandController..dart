@@ -72,9 +72,7 @@ class BrandController extends GetxController {
       // loading(T);
       // File file = File(image.value!.path);
       Uint8List bytes = await image.value!.readAsBytes();
-      print("Ddddddddddddddd");
-      print(image.value!.path);
-      print(image.value!.name);
+  
       var formDatass = ss.FormData.fromMap({
         'image': ss.MultipartFile.fromBytes(
           bytes,

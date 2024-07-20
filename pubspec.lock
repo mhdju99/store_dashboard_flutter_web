@@ -304,6 +304,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.19.0"
+  lazy_load_indexed_stack:
+    dependency: "direct main"
+    description:
+      name: lazy_load_indexed_stack
+      sha256: e581426391c44708210b1f571046320ea52dea46740d4972d9e1820b4ef94827
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   leak_tracker:
     dependency: transitive
     description:
@@ -493,22 +509,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      sha256: ab73109c586f5ec2b01adc2672026a1fb3f93b2b5f6061ba8d7126c119061002
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.2.9"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "78681c79fe14c338b2985c67ab2863df7cf11541fd6d347be3ba37bb0bcd7d81"
+      sha256: "7666506885ebc8f62bb928ad4588a73e20caaff2b2cf2b2b56f67d98f4113525"
       url: "https://pub.dev"
     source: hosted
-    version: "26.1.41"
-  syncfusion_flutter_datagrid:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_datagrid
-      sha256: e443813578b67a4256e181fed420e9ab08fa0d2d6a828eddb94356e394e2cee3
-      url: "https://pub.dev"
-    source: hosted
-    version: "26.1.41"
+    version: "24.2.9"
   term_glyph:
     dependency: transitive
     description:

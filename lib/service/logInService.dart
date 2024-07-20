@@ -16,7 +16,6 @@ class LogInServices {
         "email": email,
         "password": password,
       });
-      print(data);
       return data;
     } on DioException catch (e) {
       return e.response;

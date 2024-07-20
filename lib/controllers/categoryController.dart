@@ -9,26 +9,21 @@ import 'package:store_dashbord/model/suplayer_model.dart';
 import 'package:store_dashbord/service/brandService..dart';
 import 'package:store_dashbord/service/categoryService.dart';
 import 'package:store_dashbord/service/suplayerService.dart';
+import 'package:store_dashbord/widgets/customText.dart';
 
 class categoryController extends GetxController {
   String? name;
 
-  final _categoryDataLIst = <categoryData>[
-    categoryData(
-        categoryName: "Tech",
-        )
-  ].obs;
+  final _categoryDataLIst = <categoryData>[].obs;
   var image = Rx<XFile?>(null);
 
-  List<categoryData> get Barnds => _categoryDataLIst;
+  List<categoryData> get category => _categoryDataLIst;
   var loading = F.obs;
   @override
   void onInit() {
-    // fetchProduct();
+    fetchcategory();
     super.onInit();
   }
-
-
 
   void fetchcategory() async {
     try {
@@ -41,24 +36,49 @@ class categoryController extends GetxController {
       loading(F);
     }
   }
+  Future<bool?> add() async {
+    try {
+      loading(T);
+      categoryData x = categoryData(
+         categoryName: name);
+      var data = await CategoryService().Addcategory(x);
 
-  Future<bool?> del(String id) async {
+      if (!data) {
+        Get.snackbar("title", "no data");
+        return false;
+      }
+      if (data) {
+        Get.snackbar(
+          ".",
+          "succsess",
+          maxWidth: 600,
+          messageText: CustomText(
+            text: "succsess",
+            fontSize: 20,
+          ),
+        );
+        return true;
+      }
+    } finally {
+      refresh();
+    }
+    return null;
+  }
+ void del(String id) async {
     try {
       loading(T);
       var data = await CategoryService().delcategory(id);
 
       if (!data) {
         Get.snackbar("title", "message");
-        return false;
+    
       }
       if (data) {
-        Get.snackbar("title", "message");
-        return true;
+        Get.snackbar("title", "succsess");    
       }
     } finally {
-      loading(F);
+      refresh();
     }
-    return null;
   }
 
   // Future<bool> add() async {

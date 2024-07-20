@@ -25,125 +25,225 @@ class products extends StatelessWidget {
 
   String? selectedValue;
   List<String?> ccs = ["d", "e"];
-  ProductController cc = Get.put(ProductController());
+  // BrandController bb = Get.put(BrandController());
 
   @override
   Widget build(BuildContext context) {
+    ProductController cc = Get.find<ProductController>();
+
     double width = MediaQuery.of(context).size.width;
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // SizedBox(height: 50,),
-          Padding(
-            padding: EdgeInsets.only(top: 20, left: width / 100),
-            child: CustomText(
-              text: "Products",
-              fontSize: 27,
-              wight: FontWeight.bold,
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // SizedBox(height: 50,),
+        Padding(
+          padding: EdgeInsets.only(top: 20, left: width / 100),
+          child: CustomText(
+            text: "Products",
+            fontSize: 27,
+            wight: FontWeight.bold,
           ),
-          const SizedBox(
-            height: 49,
+        ),
+        const SizedBox(
+          height: 49,
+        ),
+        Container(
+          color: Colors.grey.shade100,
+          padding: EdgeInsets.symmetric(horizontal: width / 80),
+          child: Row(
+            children: [
+              Expanded(
+                  child: CustomText(
+                text: "My products",
+                fontSize: 22,
+                wight: FontWeight.bold,
+              )),
+              ElevatedButton.icon(
+                onPressed: () {
+                  ADD_SUPLAYER_DIALOG();
+                },
+                icon: const Icon(
+                  // <-- Icon
+                  Icons.add,
+                  size: 24.0,
+                ),
+                label: const Text('Add Product'), // <-- Text
+              ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.refresh))
+            ],
           ),
-          Container(
-            color: Colors.grey.shade100,
+        ),
+
+        Expanded(
+          child: Container(
             padding: EdgeInsets.symmetric(horizontal: width / 80),
-            child: Row(
+            child: GridView.builder(
+                                padding: const EdgeInsets.only(top: 20),
+
+                itemCount: 20,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 5,
+                    crossAxisCount:
+                        ResponsiveWidget.isSmallScreen(context) ? 2 : 5),
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    height: 200,
+                    child: InkWell(
+                      onTap: () {
+                        product_info_dialog();
+                      },
+                      child: Card(
+                        elevation: 2,
+                        child: Column(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                  alignment: Alignment.topCenter,
+                                  child: Image.network(
+                                      fit: BoxFit.fitWidth,
+                                      height: 170,
+                                      "https://m.media-amazon.com/images/I/813-n5YTYiL.__AC_SY445_SX342_QL70_ML2_.jpg"
+                                      // cc.Barnds[index].Image!,
+                                      )),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6),
+                              child: CustomText(
+                                text: "headphone",
+                                fontSize: 14,
+                                coler: Colors.grey,
+                                wight: FontWeight.bold,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6),
+                              child: CustomText(
+                                // text: cc.Barnds[index].BrandName!,
+                                text: "headphone",
+                                fontSize: 18,
+                                wight: FontWeight.bold,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6),
+                              child: CustomText(
+                                // text: cc.Barnds[index].BrandName!,
+                                text: "sony",
+                                fontSize: 14,
+                                coler: Colors.grey,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<dynamic> product_info_dialog() {
+    return Get.defaultDialog(
+      title: "PRODUCT INFO",
+      content: Expanded(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          width: 500,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                    child: CustomText(
-                  text: "My products",
-                  fontSize: 22,
-                  wight: FontWeight.bold,
-                )),
+                Image.network(
+                    fit: BoxFit.fitWidth,
+                    height: 170,
+                    "https://m.media-amazon.com/images/I/813-n5YTYiL.__AC_SY445_SX342_QL70_ML2_.jpg"
+                    // cc.Barnds[index].Image!,
+                    ),
+                cardDetails(
+                  header: "NAME",
+                  data: " hovo v7",
+                ),
+                cardDetails(
+                  header: "Brand",
+                  data: "sony",
+                ),
+                cardDetails(
+                  header: "category",
+                  data: "headphone",
+                ),
+                cardDetails(
+                  header: "id",
+                  data: "3459834985",
+                ),
+                cardDetails(
+                  header: "descripton",
+                  data: "dgrgretertrtert  ertertertertgdfgdgdgfdgdfg",
+                ),
+                const SizedBox(height: 50),
                 ElevatedButton.icon(
                   onPressed: () {
-                    ADD_SUPLAYER_DIALOG();
+                    Get.back();
+                    // Get.defaultDialog(
+                    //     title: ' Alert',
+                    //     middleText: 'Do you want to close?',
+                    //     onConfirm: () {
+
+                    //       // cc.del(listofitem[index].suplayerID!);
+                    //     },
+                    //     textConfirm: 'yes',
+                    //     confirmTextColor: Colors.amberAccent,
+                    //     textCancel: 'no');
                   },
+                  style: ButtonStyle(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      )),
+                      side: WidgetStateProperty.all(BorderSide.none),
+                      textStyle: WidgetStateProperty.all(
+                          const TextStyle(color: Colors.white)),
+                      backgroundColor: WidgetStateProperty.all(Colors.red)),
                   icon: const Icon(
                     // <-- Icon
-                    Icons.add,
+                    Icons.delete,
                     size: 24.0,
+                    color: Colors.white,
                   ),
-                  label: const Text('Add Product'), // <-- Text
-                ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.refresh))
+                  label: const Text(
+                    'Remove Suplayer',
+                    style: TextStyle(color: Colors.white),
+                  ), // <-- Text
+                )
               ],
             ),
           ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: DataTable(
-                      columnSpacing: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade100,
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20)),
-                      ),
-                      dataRowColor: WidgetStateProperty.all(Colors.white),
-                      // Datatable widget that have the property columns and rows.
-                      columns: const [
-                        // Set the name of the column
-                        DataColumn(
-                          label: Text('ID'),
-                        ),
-                        DataColumn(
-                          label: Text('Name'),
-                        ),
-                        DataColumn(
-                          label: Text('LastName'),
-                        ),
-                        DataColumn(
-                          label: Text('Age'),
-                        ),
-                        DataColumn(
-                          label: Text('action'),
-                        )
-                      ],
-                      rows: [
-                        // Set the values to the columns
-                        DataRow(selected: true, cells: [
-                          const DataCell(Text("1")),
-                          const DataCell(Text("Alex")),
-                          const DataCell(Text("Anderson")),
-                          const DataCell(Text("18")),
-                          DataCell(IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () {},
-                          )),
-                        ]),
-                        DataRow(cells: [
-                          const DataCell(Text("2")),
-                          const DataCell(Text("John")),
-                          const DataCell(Text("Anderson")),
-                          const DataCell(Text("24")),
-                          DataCell(IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () {},
-                          ))
-                        ]),
-                      ]),
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
+      onCancel: () {
+        Get.back();
+      },
+      textCancel: "undo",
     );
   }
 
   Future<dynamic> ADD_SUPLAYER_DIALOG() {
+    BrandController bb = Get.find<BrandController>();
+    categoryController cat = Get.find<categoryController>();
+    ProductController cc = Get.find<ProductController>();
+
     return Get.defaultDialog(
-      title: "ADD SUPLAYER",
+      title: "ADD PRODUCT",
       content: Expanded(
         child: Container(
           padding: const EdgeInsets.all(16),
@@ -160,16 +260,13 @@ class products extends StatelessWidget {
                     children: [pickImage1(), pickImage2(), pickImage3()],
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 10,
                   ),
                   CustomTextField(
                     text: "Product name",
                     onSave: (val) {
                       cc.name = val;
                     },
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                   const SizedBox(
                     height: 10,
@@ -185,14 +282,26 @@ class products extends StatelessWidget {
                     //   return authControlar.validateEmail(e);
                     // },
                   ),
-                  Container(
-                    child: dropDown(
-                      genderItems: cc.brandName,
-                      name: "brands",
-                      onSave: (Value) {
-                        // cc.brandId(Value);
-                      },
-                    ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  dropDown(
+                    genderItems: bb.Barnds.map((val) => val.BrandName).toList(),
+                    name: "brands",
+                    onSave: (Value) {
+                      cc.brandId(Value);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  dropDown(
+                    genderItems:
+                        cat.category.map((val) => val.categoryName).toList(),
+                    name: "category",
+                    onSave: (Value) {
+                      cc.catId(Value);
+                    },
                   )
                 ],
               ),

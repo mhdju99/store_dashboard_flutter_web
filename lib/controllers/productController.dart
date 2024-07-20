@@ -26,25 +26,26 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     fetchProduct();
-    var f = ss.Barnds;
+    bb.fetchBrand();
+    var f = ss.category;
     var b = bb.Barnds;
     catrgoryName = f.map((val) => val.categoryName).toList();
-    print(catrgoryName);
+
     brandName = b.map((val) => val.BrandName).toList();
 
     super.onInit();
   }
 
   void brandId(val) {
-    int id =
+    int index =
         bb.Barnds.indexWhere((element) => element.BrandName!.contains(val));
-    brand = bb.Barnds[id].BrandId;
+    brand = bb.Barnds[index].BrandId;
   }
 
   void catId(val) {
     int id =
-        ss.Barnds.indexWhere((element) => element.categoryName!.contains(val));
-    category = ss.Barnds[id].categoryName;
+        ss.category.indexWhere((element) => element.categoryName!.contains(val));
+    category = ss.category[id].categoryName;
   }
 
   Future<void> pickImage1() async {

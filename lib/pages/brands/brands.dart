@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store_dashbord/model/brand_model.dart';
 import 'package:get/get.dart';
+import 'package:store_dashbord/model/brand_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_for_web/image_picker_for_web.dart';
 import 'package:store_dashbord/controllers/brandController..dart';
@@ -16,10 +16,11 @@ import 'dart:io';
 class brands extends StatelessWidget {
   brands({super.key});
   final formkey = GlobalKey<FormState>();
-  BrandController cc = Get.put(BrandController());
 
   @override
   Widget build(BuildContext context) {
+    BrandController cc = Get.find<BrandController>();
+
     double width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -67,64 +68,81 @@ class brands extends StatelessWidget {
             ],
           ),
         ),
+Obx(() {
+                if (!cc.loading.value) {
+                  return cc.Barnds.isNotEmpty
+                      ? Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: width / 80),
+                      child: GridView.builder(
+                                          padding: const EdgeInsets.only(top: 20),
 
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: width / 80),
-            child: GridView.builder(
-                itemCount: cc.Barnds.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    crossAxisCount:
-                        ResponsiveWidget.isSmallScreen(context) ? 2 : 4),
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    height: 200,
-                    child: InkWell(
-                      onTap: () {
-                        BrandInfoDialog(cc.Barnds[index]);
-                      },
-                      child: Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: SizedBox(
-                                  width: 200,
-                                  height: 150,
-                                  child: Image.network(
-                                    cc.Barnds[index].Image!,
-                                  )),
-                            ),
-                            const SizedBox(
-                              height: 50,
-                            ),
-                            CustomText(
-                              text: cc.Barnds[index].BrandName!,
-                              fontSize: 20,
-                            )
-                          ],
-                        ),
-                      ),
+                          itemCount: cc.Barnds.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 5,
+                                  crossAxisCount:
+                                      ResponsiveWidget.isSmallScreen(context)
+                                          ? 2
+                                          : 6),
+                          itemBuilder: (context, index) {
+                            return SizedBox(
+                              height: 200,
+                              child: InkWell(
+                                onTap: () {
+                                  BrandInfoDialog(cc.Barnds[index]);
+                                },
+                                child: Card(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: SizedBox(
+                                            width: 200,
+                                            height: 150,
+                                            child: Image.network(
+                                              cc.Barnds[index].Image!,
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 50,
+                                      ),
+                                      CustomText(
+                                        text: cc.Barnds[index].BrandName!,
+                                        fontSize: 20,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
                     ),
-                  );
-                }),
-          ),
-        ),
+                  )
+                      : const Center(child: Text("no data"));
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              })
+        ,
       ],
     );
   }
 
   Future<dynamic> BrandInfoDialog(BarndData data) {
+      BrandController cc = Get.find<BrandController>();
+
     return Get.defaultDialog(
       title: "brand INFO",
-      content: Container(
-        padding: const EdgeInsets.all(16),
-        width: 500,
-        child: SingleChildScrollView(
-          child: Expanded(
+      content: Expanded(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          width: 500,
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,10 +153,10 @@ class brands extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 200,
+                        height: 170,
                         child: Image.network(
                           data.Image!,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
                       CustomText(
@@ -196,13 +214,15 @@ class brands extends StatelessWidget {
   }
 
   Future<dynamic> ADD_BRAND_DIALOG() {
+      BrandController cc = Get.find<BrandController>();
+
     return Get.defaultDialog(
       barrierDismissible: false,
       title: "ADD BRAND",
-      content: Container(
-        padding: const EdgeInsets.all(16),
-        width: 400,
-        child: Expanded(
+      content: Expanded(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          width: 400,
           child: Form(
             key: formkey,
             child: SingleChildScrollView(

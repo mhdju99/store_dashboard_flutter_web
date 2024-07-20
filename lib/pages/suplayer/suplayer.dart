@@ -16,9 +16,10 @@ class suplayer extends StatelessWidget {
   suplayer({super.key});
   final formkey = GlobalKey<FormState>();
 
-  suplayerController cc = Get.put(suplayerController());
   @override
   Widget build(BuildContext context) {
+          suplayerController cc = Get.find<suplayerController>();
+
     double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
@@ -90,6 +91,8 @@ class suplayer extends StatelessWidget {
   }
 
   Future<dynamic> ADD_SUPLAYER_DIALOG() {
+              suplayerController cc = Get.find<suplayerController>();
+
     return Get.defaultDialog(
       title: "ADD SUPLAYER",
       content: Expanded(

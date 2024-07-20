@@ -7,21 +7,25 @@ import 'package:get/get.dart';
 import 'package:store_dashbord/constants/style.dart';
 import 'package:store_dashbord/controllers/NavigationRailController.dart';
 import 'package:store_dashbord/helper/responsiveness.dart';
+import 'package:store_dashbord/pages/Order/order.dart';
 import 'package:store_dashbord/pages/brands/brands.dart';
 import 'package:store_dashbord/pages/category/category.dart';
+import 'package:store_dashbord/pages/inventory/inventory.dart';
+import 'package:store_dashbord/pages/invoice/invoice.dart';
 import 'package:store_dashbord/pages/overview/overview.dart';
 import 'package:store_dashbord/pages/overview/page2.dart';
 import 'package:store_dashbord/pages/products/products.dart';
 import 'package:store_dashbord/pages/suplayer/suplayer.dart';
+import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 
 class LargScreen extends StatelessWidget {
   LargScreen({super.key});
   NavigationRailController cc = Get.put(NavigationRailController());
   List<SidebarItem> navigationDestinations = [
-    SidebarItem(
-      icon: Icons.trending_up,
-      text: 'Overview',
-    ),
+    // SidebarItem(
+    //   icon: Icons.trending_up,
+    //   text: 'Overview',
+    // ),
     SidebarItem(
       icon: Icons.settings,
       text: 'Settings',
@@ -42,6 +46,17 @@ class LargScreen extends StatelessWidget {
       icon: Icons.local_shipping_outlined,
       text: 'suplayer',
     ),
+    SidebarItem(
+      icon: Icons.currency_bitcoin_sharp,
+      text: 'invoice',
+    ),SidebarItem(
+      icon: Icons.shopping_cart_outlined,
+      text: 'orders',
+    ),
+    SidebarItem(
+      icon: Icons.receipt_outlined,
+      text: 'inventory',
+    ),
     // Add more destinations as needed
   ];
 
@@ -52,27 +67,13 @@ class LargScreen extends StatelessWidget {
       body: Obx(() => !ResponsiveWidget.isSmallScreen(context)
           ? Row(
               children: [
-                // GetX<NavigationRailController>(builder: (cc) {
-                //   return Expanded(
-                //     child: NavigationRail(
-                //       selectedIndex: cc.activeIndex.value,
-                //       onDestinationSelected: (int index) {
-                //         cc.changeActivePage(index);
-                //       },
-                //       destinations: navigationDestinations,
-                //     ),
-                //   );
-                // }),
+             
                 SizedBox(
                   child: AnimatedSidebar(
                     margin: const EdgeInsets.fromLTRB(10, 15, 5, 15),
                     expanded: ResponsiveWidget.isLargScreen(context),
                     items: navigationDestinations,
-                    // use this to set the active tab if you want to control it from outside
-                    // combined with autoSelectedIndex set to false
-                    // if you don't set autoSelectedIndex to false, the widget will
-                    // automatically set the active tab and selected item is used only
-                    // to set the initial value
+          
                     selectedIndex: cc.activeIndex.value,
                     autoSelectedIndex: false,
                     onItemSelected: (int index) {
@@ -80,15 +81,13 @@ class LargScreen extends StatelessWidget {
                     },
                     duration: const Duration(milliseconds: 200),
                     frameDecoration: BoxDecoration(
-                      
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         tileMode: TileMode.repeated,
                         colors: [
                           light, light, light
-                          // Color.fromRGBO(66, 66, 74, 1),
-                          // Color.fromRGBO(25, 25, 25, 1),
+                  
                         ],
                       ),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -126,29 +125,36 @@ class LargScreen extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 5,
-                  child: IndexedStack(
-                    index: cc.activeIndex.value,
+                  child: PageView(
+                    controller: cc.pc,
                     children: [
-                      const Overview(),
+                      // const Overview(),
                       const page2(),
-                       products(),
+                      products(),
                       brands(),
-                      const category(),
+                      category(),
                       suplayer(),
+                      invoice(),
+                      order(),
+                      inventory()
                     ],
                   ),
                 )
               ],
             )
-          : IndexedStack(
-              index: cc.activeIndex.value,
+          : PageView(
+              controller: cc.pc,
               children: [
-                const Overview(),
+                // const Overview(),
                 const page2(),
-                 products(),
+                products(),
                 brands(),
-                const category(),
+                category(),
                 suplayer(),
+                invoice(),
+                                      order(),
+
+                inventory()
               ],
             )),
     );

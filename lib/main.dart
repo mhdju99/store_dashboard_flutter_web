@@ -3,13 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:store_dashbord/constants/style.dart';
+import 'package:store_dashbord/controllers/brandController..dart';
+import 'package:store_dashbord/helper/injection.dart';
 import 'package:store_dashbord/pages/splashScreen.dart';
 import 'package:store_dashbord/sitelayout.dart';
 
 void main() async {
   await GetStorage.init();
-
-  // Get.put(MenuController());
+  //  Get.put(BrandController());
+  injection.init();
   runApp(const MyApp());
 }
 

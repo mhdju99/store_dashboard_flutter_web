@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 
 class dropDown extends StatelessWidget {
   String? name;
-   List<String?> genderItems;
+  List<String?> genderItems;
   void Function(String?)? onSave;
-   dropDown({
+  dropDown({
     Key? key,
-   required this.name,
+    required this.name,
     required this.genderItems,
     this.onSave,
   }) : super(key: key);
- 
+
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField2<String>(
-  
       isExpanded: true,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 16),
@@ -25,9 +24,9 @@ class dropDown extends StatelessWidget {
         ),
         // Add more decoration..
       ),
-      hint:  Text(
+      hint: Text(
         name!,
-        style: TextStyle(fontSize: 14),
+        style: const TextStyle(fontSize: 14),
       ),
       items: genderItems
           .map((item) => DropdownMenuItem<String>(
@@ -50,9 +49,6 @@ class dropDown extends StatelessWidget {
         //Do something when selected item is changed.
       },
       onSaved: onSave,
-      buttonStyleData: const ButtonStyleData(
-        padding: EdgeInsets.only(right: 8),
-      ),
       iconStyleData: const IconStyleData(
         icon: Icon(
           Icons.arrow_drop_down,
@@ -62,6 +58,7 @@ class dropDown extends StatelessWidget {
       ),
       dropdownStyleData: DropdownStyleData(
         decoration: BoxDecoration(
+          color: Colors.grey[300],
           borderRadius: BorderRadius.circular(15),
         ),
       ),

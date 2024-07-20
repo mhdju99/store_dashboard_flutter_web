@@ -10,7 +10,7 @@ class BrandService {
 
   Future<List<BarndData>?> getBrand() async {
     Response? response = await Api().get(endpoint: _endpoint);
-    // print("ssssssssssssssss $response");
+   
 
     List<BarndData> dataList = [];
 
@@ -32,7 +32,7 @@ class BrandService {
 
   Future<bool> AddBrand(var Branditem) async {
     Response? response = await Api().post(endpoint: _endpoint, body: Branditem);
-    print(response);
+    print("Rtretet $response");
     if (response != null) {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return true;
