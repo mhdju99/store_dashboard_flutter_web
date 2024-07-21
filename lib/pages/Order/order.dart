@@ -11,10 +11,12 @@ import 'package:store_dashbord/pages/overview/widget/card_larg.dart';
 import 'package:store_dashbord/widgets/CustomTextField.dart';
 import 'package:store_dashbord/widgets/alertDilog.dart';
 import 'package:store_dashbord/widgets/customText.dart';
+import 'package:store_dashbord/widgets/dropDown.dart';
 
 class order extends StatelessWidget {
   order({super.key});
   final formkey = GlobalKey<FormState>();
+  List<String?> ccs = ["d", "e"];
 
   OrderController cc = Get.put(OrderController());
   @override
@@ -215,8 +217,8 @@ class tabel extends StatelessWidget {
                       title: "SUPLAYER INFO",
                       content: Expanded(
                         child: Container(
-                          padding: const EdgeInsets.all(16),
-                          width: 700,
+                          padding: const EdgeInsets.all(20),
+                          width: 600,
                           child: SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -238,38 +240,87 @@ class tabel extends StatelessWidget {
                                     )
                                   ],
                                 ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
                                 Container(
-                                  child: Card(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          CustomText(
-                                            text: "header :",
-                                            wight: FontWeight.bold,
-                                            coler: Colors.grey,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                maxline: 5,
+                                  decoration: BoxDecoration(
+                                      color: P2.withOpacity(0.1),
+                                      border: Border.all(
+                                        color: P2,
+                                        width: 1.2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        10,
+                                      )),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        CustomText(
+                                          text: "items",
+                                          wight: FontWeight.bold,
+                                          coler: Colors.grey,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CustomText(
                                                 text: "data",
                                               ),
-                                              const SizedBox(
-                                                width: 50,
+                                            ),
+                                            Expanded(
+                                              child: CustomText(
+                                                text: "data",
                                               ),
-                                              Expanded(
-                                                child: CustomText(
-                                                  maxline: 5,
-                                                  text: "data",
-                                                ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 40,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CustomText(
+                                                text: "Total Price ",
                                               ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                            ),
+                                            const SizedBox(
+                                              width: 20,
+                                            ),
+                                            Expanded(
+                                              child: CustomText(
+                                                coler: Colors.green,
+                                                text: "123333 s.p",
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: CustomText(
+                                                text: "order status",
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 20,
+                                            ),
+                                            Expanded(
+                                              child: dropDown(
+                                                genderItems: const [
+                                                  "sadas",
+                                                  "Asdas"
+                                                ],
+                                                name: "brands",
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
                                     ),
                                   ),
                                 )
