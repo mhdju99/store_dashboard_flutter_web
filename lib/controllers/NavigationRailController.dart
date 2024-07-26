@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:store_dashbord/constants/style.dart';
-import 'package:store_dashbord/controllers/brandController..dart';
-import 'package:store_dashbord/controllers/inventoryController.dart';
-import 'package:store_dashbord/pages/overview/overview.dart';
-import 'package:store_dashbord/routing/routes.dart';
+import 'package:store_dashbord/pages/overview/page2.dart';
 
 class NavigationRailController extends GetxController {
   PageController pc = PageController();

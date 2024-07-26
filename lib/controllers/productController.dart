@@ -1,14 +1,22 @@
-import 'package:dio/dio.dart';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/_http/_html/_http_request_html.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:store_dashbord/controllers/brandController..dart';
 import 'package:store_dashbord/controllers/categoryController.dart';
 import 'package:store_dashbord/model/brand_model.dart';
+import 'package:store_dashbord/model/poduct_model.dart';
 import 'package:store_dashbord/model/suplayer_model.dart';
+import 'package:store_dashbord/service/brandService..dart';
+import 'package:http/http.dart';
+import 'package:dio/dio.dart' as d;
+import 'package:store_dashbord/service/productService.dart';
+
 import 'package:store_dashbord/service/suplayerService.dart';
-import 'package:store_dashbord/widgets/customText.dart';
 
 class ProductController extends GetxController {
   BrandController bb = Get.put(BrandController());
@@ -20,8 +28,8 @@ class ProductController extends GetxController {
   var image3 = Rx<XFile?>(null);
   var image2 = Rx<XFile?>(null);
 
-  final _suplayerLIst = <SuplayerData>[].obs;
-  List<SuplayerData> get suplayers => _suplayerLIst;
+  final _productLIst = <ProductData>[].obs;
+  List<ProductData> get product => _productLIst;
   var loading = F.obs;
   @override
   void onInit() {
@@ -36,16 +44,37 @@ class ProductController extends GetxController {
     super.onInit();
   }
 
+  String? Findproduct(String id) {
+    int index = product.indexWhere((element) => element.id!.contains(id));
+    String? suplayerName = product[index].title;
+
+    return suplayerName;
+  }
+
   void brandId(val) {
     int index =
         bb.Barnds.indexWhere((element) => element.BrandName!.contains(val));
     brand = bb.Barnds[index].BrandId;
+    print("id");
+    print(bb.Barnds[index].BrandId);
+  }
+
+  String? FindBrand(String id) {
+    print(bb.Barnds);
+    int index =
+        bb.Barnds.indexWhere((element) => element.BrandId!.contains(id));
+    print("object $index");
+    brand = bb.Barnds[index].BrandName;
+
+    return brand;
   }
 
   void catId(val) {
-    int id =
-        ss.category.indexWhere((element) => element.categoryName!.contains(val));
-    category = ss.category[id].categoryName;
+    int id = ss.category
+        .indexWhere((element) => element.categoryName!.contains(val));
+    category = ss.category[id].categoryid;
+    print("id");
+    print(ss.category[id].categoryid);
   }
 
   Future<void> pickImage1() async {
@@ -75,15 +104,56 @@ class ProductController extends GetxController {
   void fetchProduct() async {
     try {
       loading(T);
-      var data = await suplayerService().getSuplayer();
+      var data = await ProductService().getProduct();
       if (data != null) {
-        _suplayerLIst.value = data;
+        _productLIst.value = data;
       }
     } finally {
       loading(F);
     }
   }
 
+  void add() async {
+    try {
+      // loading(T);
+      // File file = File(image.value!.path);
+      Uint8List bytes1 = await image1.value!.readAsBytes();
+      Uint8List bytes2 = await image2.value!.readAsBytes();
+      Uint8List bytes3 = await image3.value!.readAsBytes();
+
+      var formDatass = d.FormData.fromMap({
+        'imageCovered': d.MultipartFile.fromBytes(
+          bytes1,
+          filename: image1.value!.name,
+        ),
+        'images': d.MultipartFile.fromBytes(
+          bytes2,
+          filename: image2.value!.name,
+        ),
+        'boxlmages': d.MultipartFile.fromBytes(
+          bytes3,
+          filename: image3.value!.name,
+        ),
+        'title': name,
+        'category': category,
+        'brand': brand,
+        'description': descraption,
+      });
+      var data = await ProductService().Addproduct(formDatass);
+
+      if (data) {
+        Get.snackbar("title", "add succsee",
+            backgroundColor: Colors.greenAccent);
+        // return false;
+      }
+      if (!data) {
+        Get.snackbar("title", "errorr");
+        // return true;
+      }
+    } finally {
+      refresh();
+    }
+  }
   // Future<bool?> add() async {
   //   try {
   //     loading(T);
@@ -116,7 +186,7 @@ class ProductController extends GetxController {
   void del(String id) async {
     try {
       // loading(T);
-      var state = await suplayerService().delSuplayer(id);
+      var state = await ProductService().delProduct(id);
 
       if (!state) {
         Get.snackbar("title", "Erorr");

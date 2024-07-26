@@ -68,15 +68,14 @@ class brands extends StatelessWidget {
             ],
           ),
         ),
-Obx(() {
-                if (!cc.loading.value) {
-                  return cc.Barnds.isNotEmpty
-                      ? Expanded(
+        Obx(() {
+          if (!cc.loading.value) {
+            return cc.Barnds.isNotEmpty
+                ? Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: width / 80),
                       child: GridView.builder(
-                                          padding: const EdgeInsets.only(top: 20),
-
+                          padding: const EdgeInsets.only(top: 20),
                           itemCount: cc.Barnds.length,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
@@ -123,18 +122,17 @@ Obx(() {
                           }),
                     ),
                   )
-                      : const Center(child: Text("no data"));
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              })
-        ,
+                : const Center(child: Text("no data"));
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        }),
       ],
     );
   }
 
   Future<dynamic> BrandInfoDialog(BarndData data) {
-      BrandController cc = Get.find<BrandController>();
+    BrandController cc = Get.find<BrandController>();
 
     return Get.defaultDialog(
       title: "brand INFO",
@@ -214,7 +212,7 @@ Obx(() {
   }
 
   Future<dynamic> ADD_BRAND_DIALOG() {
-      BrandController cc = Get.find<BrandController>();
+    BrandController cc = Get.find<BrandController>();
 
     return Get.defaultDialog(
       barrierDismissible: false,

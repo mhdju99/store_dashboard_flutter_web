@@ -72,7 +72,7 @@ class BrandController extends GetxController {
       // loading(T);
       // File file = File(image.value!.path);
       Uint8List bytes = await image.value!.readAsBytes();
-  
+
       var formDatass = ss.FormData.fromMap({
         'image': ss.MultipartFile.fromBytes(
           bytes,
@@ -92,7 +92,7 @@ class BrandController extends GetxController {
         // return true;
       }
     } finally {
-       refresh();
+      refresh();
     }
   }
 

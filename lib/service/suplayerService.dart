@@ -1,6 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:js_interop';
-
 import 'package:dio/dio.dart';
 import 'package:store_dashbord/constants/end_points.dart';
 import 'package:store_dashbord/helper/api.dart';
@@ -49,7 +47,9 @@ class suplayerService {
   }
 
   Future<bool> delSuplayer(String id) async {
-    Response? response = await Api().del(endpoint: _endpoint +'/'+id, );
+    Response? response = await Api().del(
+      endpoint: _endpoint + '/' + id,
+    );
     if (response != null) {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return true;

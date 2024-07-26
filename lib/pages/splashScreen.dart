@@ -8,11 +8,11 @@ import 'package:store_dashbord/pages/onBorder.dart';
 class SplashView extends StatelessWidget {
   final AuthenticationManager _authmanager = Get.put(AuthenticationManager());
 
-   SplashView({super.key});
+  SplashView({super.key});
 
   Future<void> initializeSettings() async {
     _authmanager.checkLoginStatus();
-    
+
     //Simulate other services for 3 seconds
     await Future.delayed(const Duration(seconds: 3));
   }

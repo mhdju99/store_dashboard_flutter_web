@@ -2,9 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:store_dashbord/constants/end_points.dart';
 import 'package:store_dashbord/helper/api.dart';
-import 'package:store_dashbord/model/brand_model.dart';
 import 'package:store_dashbord/model/category_model.dart';
-import 'package:store_dashbord/model/suplayer_model.dart';
 
 class CategoryService {
   final String _endpoint = EndPoints.categories_endpoint;
@@ -42,8 +40,11 @@ class CategoryService {
       return false;
     }
   }
+
   Future<bool> delcategory(String id) async {
-    Response? response = await Api().del(endpoint: '$_endpoint/$id', );
+    Response? response = await Api().del(
+      endpoint: '$_endpoint/$id',
+    );
     if (response != null) {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return true;

@@ -17,6 +17,14 @@ class suplayerController extends GetxController {
     super.onInit();
   }
 
+  String? suplayerId(val) {
+    int index = _suplayerLIst
+        .indexWhere((element) => element.suplayerName!.contains(val));
+    String? id = _suplayerLIst[index].suplayerID;
+    print("object $id");
+    return id;
+  }
+
   void fetchProduct() async {
     try {
       loading(T);
@@ -27,6 +35,24 @@ class suplayerController extends GetxController {
     } finally {
       loading(F);
     }
+  }
+
+  String? FindSupplaerID(String suplayerName1) {
+    int index = suplayers
+        .indexWhere((element) => element.suplayerName!.contains(suplayerName1));
+    String? suplayerid = suplayers[index].suplayerID;
+
+    return suplayerid;
+  }
+
+  String? FindSupplaerName(String id) {
+    print("object $id");
+    int index =
+        suplayers.indexWhere((element) => element.suplayerID!.contains(id));
+    String? suplayerName = suplayers[index].suplayerName;
+    print("object $suplayerName");
+
+    return suplayerName;
   }
 
   Future<bool?> add() async {
@@ -46,15 +72,15 @@ class suplayerController extends GetxController {
         return false;
       }
       if (data) {
-        Get.snackbar(".", "succsess",
-            maxWidth: 600,
-            
-            messageText: CustomText(
-              text: "succsess",
-              fontSize: 20,
-
-            ),
-            );
+        Get.snackbar(
+          ".",
+          "succsess",
+          maxWidth: 600,
+          messageText: CustomText(
+            text: "succsess",
+            fontSize: 20,
+          ),
+        );
         return true;
       }
     } finally {

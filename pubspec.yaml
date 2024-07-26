@@ -35,6 +35,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   flutter:
     sdk: flutter
+  flutter_icon_snackbar: ^1.1.7
   flutter_screenutil: ^5.9.3
   get: ^4.6.6
   get_storage: ^2.1.1

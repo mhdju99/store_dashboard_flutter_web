@@ -28,7 +28,7 @@ class LargScreen extends StatelessWidget {
     // ),
     SidebarItem(
       icon: Icons.settings,
-      text: 'Settings',
+      text: 'Overview',
     ),
     SidebarItem(
       icon: Icons.laptop,
@@ -49,7 +49,8 @@ class LargScreen extends StatelessWidget {
     SidebarItem(
       icon: Icons.currency_bitcoin_sharp,
       text: 'invoice',
-    ),SidebarItem(
+    ),
+    SidebarItem(
       icon: Icons.shopping_cart_outlined,
       text: 'orders',
     ),
@@ -67,13 +68,12 @@ class LargScreen extends StatelessWidget {
       body: Obx(() => !ResponsiveWidget.isSmallScreen(context)
           ? Row(
               children: [
-             
                 SizedBox(
                   child: AnimatedSidebar(
                     margin: const EdgeInsets.fromLTRB(10, 15, 5, 15),
                     expanded: ResponsiveWidget.isLargScreen(context),
                     items: navigationDestinations,
-          
+
                     selectedIndex: cc.activeIndex.value,
                     autoSelectedIndex: false,
                     onItemSelected: (int index) {
@@ -85,10 +85,7 @@ class LargScreen extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         tileMode: TileMode.repeated,
-                        colors: [
-                          light, light, light
-                  
-                        ],
+                        colors: [light, light, light],
                       ),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       boxShadow: const [
@@ -129,13 +126,13 @@ class LargScreen extends StatelessWidget {
                     controller: cc.pc,
                     children: [
                       // const Overview(),
-                      const page2(),
+                      const Overview(),
                       products(),
                       brands(),
                       category(),
                       suplayer(),
                       invoice(),
-                      order(),
+                      Order(),
                       inventory()
                     ],
                   ),
@@ -146,13 +143,13 @@ class LargScreen extends StatelessWidget {
               controller: cc.pc,
               children: [
                 // const Overview(),
-                const page2(),
+                const Overview(),
                 products(),
                 brands(),
                 category(),
                 suplayer(),
                 invoice(),
-                                      order(),
+                Order(),
 
                 inventory()
               ],

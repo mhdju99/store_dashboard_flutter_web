@@ -25,7 +25,7 @@ class card_long extends StatelessWidget {
         // padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
           color: Colors.white,
-              boxShadow: const [
+          boxShadow: const [
             BoxShadow(
               color: Color.fromRGBO(66, 66, 66, 0.75),
               spreadRadius: 0,
