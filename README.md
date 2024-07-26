@@ -1,9 +1,9 @@
 # store_dashbord
 
-A new Flutter project.
+A project using "flutter web   "  for managing e_commercal app  and  warehouse
 
-
-
+ link to app:
+ https://github.com/mhdju99/e_commerce_flutter_app
 
 # overview page :
 
