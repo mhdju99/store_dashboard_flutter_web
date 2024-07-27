@@ -2,6 +2,7 @@
 import 'package:store_dashbord/constants/end_points.dart';
 
 class BarndData {
+  
   String? BrandName;
   String? BrandId;
   String? Image;
