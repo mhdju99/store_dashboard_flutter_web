@@ -15,7 +15,7 @@ class category extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-              categoryController cc = Get.find<categoryController>();
+    categoryController cc = Get.find<categoryController>();
 
     double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
@@ -88,7 +88,7 @@ class category extends StatelessWidget {
   }
 
   Future<dynamic> ADD_category_DIALOG() {
-                  categoryController cc = Get.find<categoryController>();
+    categoryController cc = Get.find<categoryController>();
 
     return Get.defaultDialog(
       title: "ADD category",

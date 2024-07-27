@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:store_dashbord/constants/style.dart';
-import 'package:store_dashbord/controllers/categoryController.dart';
 import 'package:store_dashbord/controllers/orderController.dart';
-import 'package:store_dashbord/helper/responsiveness.dart';
-import 'package:store_dashbord/model/category_model.dart';
-import 'package:store_dashbord/pages/overview/widget/card_larg.dart';
-import 'package:store_dashbord/widgets/CustomTextField.dart';
-import 'package:store_dashbord/widgets/alertDilog.dart';
+import 'package:store_dashbord/pages/category/category.dart';
 import 'package:store_dashbord/widgets/customText.dart';
 import 'package:store_dashbord/widgets/dropDown.dart';
 
-class order extends StatelessWidget {
-  order({super.key});
+class Order extends StatelessWidget {
+  Order({super.key});
   final formkey = GlobalKey<FormState>();
   List<String?> ccs = ["d", "e"];
 
@@ -31,7 +24,7 @@ class order extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 20, left: width / 100),
             child: CustomText(
-              text: "Category",
+              text: "Orders",
               fontSize: 27,
               wight: FontWeight.bold,
             ),
@@ -162,15 +155,15 @@ class tabel extends StatelessWidget {
                 DataCell(Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
-                      20,
+                      2,
                     ),
-                    color: Colors.green.withOpacity(0.2),
+                    color: Colors.green,
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(5.0),
                     child: Text(
                       "Complete",
-                      style: TextStyle(color: Colors.green, fontSize: 12),
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 )),
@@ -199,13 +192,13 @@ class tabel extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                       20,
                     ),
-                    color: Colors.green.withOpacity(0.2),
+                    color: Colors.red,
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(5.0),
                     child: Text(
-                      "Complete",
-                      style: TextStyle(color: Colors.green, fontSize: 12),
+                      "canceled",
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 )),
@@ -214,7 +207,7 @@ class tabel extends StatelessWidget {
                   onTap: () {
                     Get.defaultDialog(
                       navigatorKey: navKey,
-                      title: "SUPLAYER INFO",
+                      title: "Orders INFO",
                       content: Expanded(
                         child: Container(
                           padding: const EdgeInsets.all(20),
@@ -336,49 +329,6 @@ class tabel extends StatelessWidget {
                     );
                   },
                 ))
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class cardDetails extends StatelessWidget {
-  String header;
-  String data;
-
-  cardDetails({
-    Key? key,
-    required this.header,
-    required this.data,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.all(7),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomText(
-              text: "$header :",
-              wight: FontWeight.bold,
-              coler: Colors.grey,
-            ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 50,
-                ),
-                Expanded(
-                  child: CustomText(
-                    maxline: 5,
-                    text: data,
-                  ),
-                ),
               ],
             )
           ],

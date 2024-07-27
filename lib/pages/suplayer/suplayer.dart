@@ -18,7 +18,7 @@ class suplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-          suplayerController cc = Get.find<suplayerController>();
+    suplayerController cc = Get.find<suplayerController>();
 
     double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
@@ -91,7 +91,7 @@ class suplayer extends StatelessWidget {
   }
 
   Future<dynamic> ADD_SUPLAYER_DIALOG() {
-              suplayerController cc = Get.find<suplayerController>();
+    suplayerController cc = Get.find<suplayerController>();
 
     return Get.defaultDialog(
       title: "ADD SUPLAYER",
@@ -388,4 +388,3 @@ class cardDetails extends StatelessWidget {
     );
   }
 }
-

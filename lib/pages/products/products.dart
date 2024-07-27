@@ -7,11 +7,13 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:store_dashbord/constants/end_points.dart';
 
 import 'package:store_dashbord/controllers/brandController..dart';
 import 'package:store_dashbord/controllers/categoryController.dart';
 import 'package:store_dashbord/controllers/productController.dart';
 import 'package:store_dashbord/helper/responsiveness.dart';
+import 'package:store_dashbord/model/poduct_model.dart';
 import 'package:store_dashbord/pages/category/category.dart';
 import 'package:store_dashbord/pages/overview/widget/card_larg.dart';
 import 'package:store_dashbord/widgets/CustomTextField.dart';
@@ -70,89 +72,122 @@ class products extends StatelessWidget {
                 ),
                 label: const Text('Add Product'), // <-- Text
               ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.refresh))
+              IconButton(
+                  onPressed: () {
+                    cc.refresh();
+                  },
+                  icon: const Icon(Icons.refresh))
             ],
           ),
         ),
-
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: width / 80),
-            child: GridView.builder(
-                                padding: const EdgeInsets.only(top: 20),
-
-                itemCount: 20,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 5,
-                    crossAxisCount:
-                        ResponsiveWidget.isSmallScreen(context) ? 2 : 5),
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    height: 200,
-                    child: InkWell(
-                      onTap: () {
-                        product_info_dialog();
-                      },
-                      child: Card(
-                        elevation: 2,
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                  alignment: Alignment.topCenter,
-                                  child: Image.network(
-                                      fit: BoxFit.fitWidth,
-                                      height: 170,
-                                      "https://m.media-amazon.com/images/I/813-n5YTYiL.__AC_SY445_SX342_QL70_ML2_.jpg"
-                                      // cc.Barnds[index].Image!,
-                                      )),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 6),
-                              child: CustomText(
-                                text: "headphone",
-                                fontSize: 14,
-                                coler: Colors.grey,
-                                wight: FontWeight.bold,
+        Obx(() {
+          if (!cc.loading.value) {
+            return cc.product.isNotEmpty
+                ? Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: width / 80),
+                      child: GridView.builder(
+                          padding: const EdgeInsets.only(top: 20),
+                          itemCount: cc.product.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 5,
+                                  crossAxisCount:
+                                      ResponsiveWidget.isSmallScreen(context)
+                                          ? 2
+                                          : 5),
+                          itemBuilder: (context, index) {
+                            return SizedBox(
+                              height: 200,
+                              child: InkWell(
+                                onTap: () {
+                                  product_info_dialog(
+                                      cc.product[index],
+                                      cc.FindBrand(cc.product[index].brand!)
+                                          .toString());
+                                },
+                                child: Card(
+                                  elevation: 2,
+                                  child: Column(
+                                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                            alignment: Alignment.topCenter,
+                                            child: Image.network(
+                                              cc.product[index].imageCovered,
+                                              fit: BoxFit.fitWidth,
+                                              height: 170,
+                                              // cc.Barnds[index].Image!,
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 6),
+                                        child: CustomText(
+                                          text: cc.product[index].category.name,
+                                          fontSize: 14,
+                                          coler: Colors.grey,
+                                          wight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 6),
+                                        child: CustomText(
+                                          // text: cc.Barnds[index].BrandName!,
+                                          text: cc.product[index].title,
+                                          fontSize: 18,
+                                          wight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 6),
+                                        child: Row(
+                                          children: [
+                                            CustomText(
+                                              // text: cc.Barnds[index].BrandName!,
+                                              text: cc.FindBrand(
+                                                      cc.product[index].brand!)
+                                                  .toString(),
+                                              fontSize: 14,
+                                              coler: Colors.grey,
+                                            ),
+                                            CustomText(
+                                              // text: cc.Barnds[index].BrandName!,
+                                              text: cc.product[index].repoInfo
+                                                          .price !=
+                                                      null
+                                                  ? "${cc.product[index].repoInfo.price} s.p"
+                                                  : "no price",
+                                              fontSize: 14,
+                                              coler: Colors.orange,
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 6),
-                              child: CustomText(
-                                // text: cc.Barnds[index].BrandName!,
-                                text: "headphone",
-                                fontSize: 18,
-                                wight: FontWeight.bold,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 6),
-                              child: CustomText(
-                                // text: cc.Barnds[index].BrandName!,
-                                text: "sony",
-                                fontSize: 14,
-                                coler: Colors.grey,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                            );
+                          }),
                     ),
-                  );
-                }),
-          ),
-        ),
+                  )
+                : const Center(child: Text("no data"));
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        }),
       ],
     );
   }
 
-  Future<dynamic> product_info_dialog() {
+  Future<dynamic> product_info_dialog(ProductData data, String brand) {
     return Get.defaultDialog(
       title: "PRODUCT INFO",
       content: Expanded(
@@ -167,64 +202,66 @@ class products extends StatelessWidget {
                 Image.network(
                     fit: BoxFit.fitWidth,
                     height: 170,
-                    "https://m.media-amazon.com/images/I/813-n5YTYiL.__AC_SY445_SX342_QL70_ML2_.jpg"
+                    data.images[0].replaceAll("localhost", EndPoints.ip)
                     // cc.Barnds[index].Image!,
                     ),
                 cardDetails(
                   header: "NAME",
-                  data: " hovo v7",
+                  data: data.title,
                 ),
                 cardDetails(
                   header: "Brand",
-                  data: "sony",
+                  data: brand,
                 ),
                 cardDetails(
                   header: "category",
-                  data: "headphone",
+                  data: data.category.name,
                 ),
                 cardDetails(
                   header: "id",
-                  data: "3459834985",
+                  data: data.id,
                 ),
                 cardDetails(
                   header: "descripton",
-                  data: "dgrgretertrtert  ertertertertgdfgdgdgfdgdfg",
+                  data: data.description,
                 ),
                 const SizedBox(height: 50),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Get.back();
-                    // Get.defaultDialog(
-                    //     title: ' Alert',
-                    //     middleText: 'Do you want to close?',
-                    //     onConfirm: () {
+                // ElevatedButton.icon(
+                //   onPressed: () {
+                //     Get.back();
+                //     Get.defaultDialog(
+                //         title: ' Alert',
+                //         middleText: 'Do you want to close?',
+                //         onConfirm: () {
+                //           ProductController cc = Get.find<ProductController>();
+                //           Get.back();
 
-                    //       // cc.del(listofitem[index].suplayerID!);
-                    //     },
-                    //     textConfirm: 'yes',
-                    //     confirmTextColor: Colors.amberAccent,
-                    //     textCancel: 'no');
-                  },
-                  style: ButtonStyle(
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      )),
-                      side: WidgetStateProperty.all(BorderSide.none),
-                      textStyle: WidgetStateProperty.all(
-                          const TextStyle(color: Colors.white)),
-                      backgroundColor: WidgetStateProperty.all(Colors.red)),
-                  icon: const Icon(
-                    // <-- Icon
-                    Icons.delete,
-                    size: 24.0,
-                    color: Colors.white,
-                  ),
-                  label: const Text(
-                    'Remove Suplayer',
-                    style: TextStyle(color: Colors.white),
-                  ), // <-- Text
-                )
+                //           cc.del(data.id);
+                //         },
+                //         textConfirm: 'yes',
+                //         confirmTextColor: Colors.amberAccent,
+                //         textCancel: 'no');
+                //   },
+                //   style: ButtonStyle(
+                //       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                //           const RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.zero,
+                //       )),
+                //       side: WidgetStateProperty.all(BorderSide.none),
+                //       textStyle: WidgetStateProperty.all(
+                //           const TextStyle(color: Colors.white)),
+                //       backgroundColor: WidgetStateProperty.all(Colors.red)),
+                //   icon: const Icon(
+                //     // <-- Icon
+                //     Icons.delete,
+                //     size: 24.0,
+                //     color: Colors.white,
+                //   ),
+                //   label: const Text(
+                //     'Remove Suplayer',
+                //     style: TextStyle(color: Colors.white),
+                //   ), // <-- Text
+                // )
               ],
             ),
           ),
@@ -313,7 +350,7 @@ class products extends StatelessWidget {
         formkey.currentState!.save();
         if (formkey.currentState!.validate()) {
           // cc.loading = true;
-          // cc.add();
+          cc.add();
         } else {
           Get.snackbar("error", " error in username or password");
         }
@@ -350,7 +387,7 @@ class pickImage1 extends StatelessWidget {
                   alignment: Alignment.center,
                   child: cc.image1.value == null
                       ? const Icon(
-                          Icons.camera_alt_outlined,
+                          Icons.add_a_photo_outlined,
                           size: 40,
                         )
                       : Image.network(cc.image1.value!.path),
@@ -387,7 +424,7 @@ class pickImage2 extends StatelessWidget {
                   alignment: Alignment.center,
                   child: cc.image2.value == null
                       ? const Icon(
-                          Icons.camera_alt_outlined,
+                          Icons.add_a_photo_outlined,
                           size: 40,
                         )
                       : Image.network(cc.image2.value!.path),
@@ -424,7 +461,7 @@ class pickImage3 extends StatelessWidget {
                   alignment: Alignment.center,
                   child: cc.image3.value == null
                       ? const Icon(
-                          Icons.camera_alt_outlined,
+                          Icons.add_a_photo_outlined,
                           size: 40,
                         )
                       : Image.network(cc.image3.value!.path),

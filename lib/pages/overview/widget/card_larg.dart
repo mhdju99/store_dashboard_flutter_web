@@ -7,7 +7,7 @@ import 'package:store_dashbord/constants/style.dart';
 
 class CardLarg extends StatelessWidget {
   Color color;
-   CardLarg({
+  CardLarg({
     Key? key,
     required this.color,
   }) : super(key: key);
@@ -22,14 +22,14 @@ class CardLarg extends StatelessWidget {
         // padding: const EdgeInsets.all(32),
         decoration: BoxDecoration(
           color: color,
-          boxShadow:   const [
-                        BoxShadow(
-                          color: Color.fromRGBO(66, 66, 66, 0.75),
-                          spreadRadius: 0,
-                          blurRadius: 5,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromRGBO(66, 66, 66, 0.75),
+              spreadRadius: 0,
+              blurRadius: 5,
+              offset: Offset(0, 2),
+            ),
+          ],
           //
           // [
           //   BoxShadow(

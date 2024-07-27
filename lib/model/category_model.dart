@@ -3,13 +3,8 @@ class categoryData {
   String? categoryName;
   String? categoryid;
   String? categorydate;
- 
-  categoryData({
-    this.categoryName,
-    this.categoryid,
-    this.categorydate
-  
-  });
+
+  categoryData({this.categoryName, this.categoryid, this.categorydate});
 
 //
   @override
@@ -17,14 +12,8 @@ class categoryData {
         categoryName: json['name'] as String?,
         categoryid: json['_id'] as String?,
         categorydate: json['createdAt'] as String?,
-   
       );
   tojson() {
-    return {
-      "name": categoryName,
-      "id": categoryid,
-      'createdAt':categorydate
-      
-    };
+    return {"name": categoryName, "id": categoryid, 'createdAt': categorydate};
   }
 }

@@ -36,11 +36,11 @@ class categoryController extends GetxController {
       loading(F);
     }
   }
+
   Future<bool?> add() async {
     try {
       loading(T);
-      categoryData x = categoryData(
-         categoryName: name);
+      categoryData x = categoryData(categoryName: name);
       var data = await CategoryService().Addcategory(x);
 
       if (!data) {
@@ -64,17 +64,17 @@ class categoryController extends GetxController {
     }
     return null;
   }
- void del(String id) async {
+
+  void del(String id) async {
     try {
       loading(T);
       var data = await CategoryService().delcategory(id);
 
       if (!data) {
         Get.snackbar("title", "message");
-    
       }
       if (data) {
-        Get.snackbar("title", "succsess");    
+        Get.snackbar("title", "succsess");
       }
     } finally {
       refresh();

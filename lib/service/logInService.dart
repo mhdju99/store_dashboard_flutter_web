@@ -12,7 +12,8 @@ class LogInServices {
     required String password,
   }) async {
     try {
-      Response? data = await Api().post(endpoint: EndPoints.login_endpoint, body: {
+      Response? data =
+          await Api().post(endpoint: EndPoints.login_endpoint, body: {
         "email": email,
         "password": password,
       });

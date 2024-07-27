@@ -18,7 +18,7 @@ class BarndData {
   factory BarndData.fromJson(Map<String, dynamic> json) => BarndData(
         BrandName: json['name'] as String?,
         BrandId: json['_id'] as String?,
-        Image: json['image'].replaceAll("localhost",EndPoints.ip) as String?,
+        Image: json['image'].replaceAll("localhost", EndPoints.ip) as String?,
       );
   tojson() {
     return {

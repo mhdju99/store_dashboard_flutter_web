@@ -6,8 +6,8 @@ import 'package:store_dashbord/pages/overview/widget/card_long.dart';
 import 'package:store_dashbord/widgets/customText.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class page2 extends StatelessWidget {
-  const page2({super.key});
+class Overview extends StatelessWidget {
+  const Overview({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +163,10 @@ class largc extends StatelessWidget {
                     SizedBox(
                       width: width / 80,
                     ),
+                    card_long(
+                      p: 0.6,
+                      chaild: Text("data"),
+                    )
                     // const CardLarg(),
                     // SizedBox(
                     //   width: width / 80,

@@ -5,7 +5,7 @@ class CustomButton extends StatelessWidget {
   final Widget chaild;
   void Function()? onPressed;
 
-   CustomButton({
+  CustomButton({
     Key? key,
     this.onPressed,
     required this.chaild,
@@ -40,4 +40,3 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
-

@@ -12,6 +12,6 @@ class AppRoute {
   static List<GetPage> pages = [
     // GetPage(name: homePageUrl, page: () => HomePage())
     GetPage(name: invocePageUrl, page: () => invoice()),
-    GetPage(name: page2PageUrl, page: () => page2())
+    GetPage(name: page2PageUrl, page: () => Overview())
   ];
 }

@@ -11,6 +11,7 @@ import 'package:store_dashbord/pages/Order/order.dart';
 import 'package:store_dashbord/pages/brands/brands.dart';
 import 'package:store_dashbord/pages/category/category.dart';
 import 'package:store_dashbord/pages/inventory/inventory.dart';
+import 'package:store_dashbord/pages/repository/repository.dart';
 import 'package:store_dashbord/pages/invoice/invoice.dart';
 import 'package:store_dashbord/pages/overview/overview.dart';
 import 'package:store_dashbord/pages/overview/page2.dart';
@@ -28,7 +29,7 @@ class LargScreen extends StatelessWidget {
     // ),
     SidebarItem(
       icon: Icons.settings,
-      text: 'Settings',
+      text: 'Overview',
     ),
     SidebarItem(
       icon: Icons.laptop,
@@ -49,9 +50,14 @@ class LargScreen extends StatelessWidget {
     SidebarItem(
       icon: Icons.currency_bitcoin_sharp,
       text: 'invoice',
-    ),SidebarItem(
+    ),
+    SidebarItem(
       icon: Icons.shopping_cart_outlined,
       text: 'orders',
+    ),
+    SidebarItem(
+      icon: Icons.receipt_outlined,
+      text: 'repository',
     ),
     SidebarItem(
       icon: Icons.receipt_outlined,
@@ -67,13 +73,12 @@ class LargScreen extends StatelessWidget {
       body: Obx(() => !ResponsiveWidget.isSmallScreen(context)
           ? Row(
               children: [
-             
                 SizedBox(
                   child: AnimatedSidebar(
                     margin: const EdgeInsets.fromLTRB(10, 15, 5, 15),
                     expanded: ResponsiveWidget.isLargScreen(context),
                     items: navigationDestinations,
-          
+
                     selectedIndex: cc.activeIndex.value,
                     autoSelectedIndex: false,
                     onItemSelected: (int index) {
@@ -85,10 +90,7 @@ class LargScreen extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         tileMode: TileMode.repeated,
-                        colors: [
-                          light, light, light
-                  
-                        ],
+                        colors: [light, light, light],
                       ),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       boxShadow: const [
@@ -129,13 +131,14 @@ class LargScreen extends StatelessWidget {
                     controller: cc.pc,
                     children: [
                       // const Overview(),
-                      const page2(),
+                      const Overview(),
                       products(),
                       brands(),
                       category(),
                       suplayer(),
                       invoice(),
-                      order(),
+                      Order(),
+                      repository(),
                       inventory()
                     ],
                   ),
@@ -146,14 +149,15 @@ class LargScreen extends StatelessWidget {
               controller: cc.pc,
               children: [
                 // const Overview(),
-                const page2(),
+                const Overview(),
                 products(),
                 brands(),
                 category(),
                 suplayer(),
                 invoice(),
-                                      order(),
+                Order(),
 
+                repository(),
                 inventory()
               ],
             )),

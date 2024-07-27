@@ -10,8 +10,7 @@ class OnBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthenticationManager authManager = Get.find();
-    authManager.login(
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJoaGhoaG1vZDBAZ21haWwuY29tIiwidXNlcklkIjoiNjY5NWFiYmY3MmNlNDFmYTcwNjhkYTMyIiwiaWF0IjoxNzIxNDgzMjYxLCJleHAiOjE3MjE1Njk2NjF9.F7OhSv8zqNqpIsApsiy0XRhTrjMXwZLJr4hb19z_kc0");
+    // authManager.login("");
     return Obx(() {
       print("kkkkkkkkk      ${authManager.isLogged.value}    kkkkkkkkk");
 

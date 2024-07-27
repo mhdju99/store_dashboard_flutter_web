@@ -5,10 +5,12 @@ import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:store_dashbord/model/suplayer_model.dart';
 import 'package:store_dashbord/service/suplayerService.dart';
 import 'package:store_dashbord/widgets/customText.dart';
+
 class OrderController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final List<Tab> myTabs = <Tab>[
-    Tab(text: 'All order ',
+    Tab(
+      text: 'All order ',
     ),
     Tab(text: 'Completed'),
     Tab(text: 'Panding'),

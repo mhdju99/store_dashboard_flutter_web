@@ -5,20 +5,13 @@ import 'package:store_dashbord/controllers/AuthenticationManager%20.dart';
 
 class Api {
   AuthenticationManager cc = g.Get.find();
-  final _dios = Dio(
-    BaseOptions()
-  );
+  final _dios = Dio(BaseOptions());
 
   Api() {
     // _dio.options.baseUrl = "http://localhost:8080/api/v1/";
     final String? token = cc.getToken();
     if (token != null) {
-      String t =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJrdXRhaWJhYWxuaXphZW15MjJAZ21haWwuY29tIiwidXNlcklkIjoiNjY5MjZmYWFjMDEwMDM2YTRlMzVkYTMzIiwiaWF0IjoxNzIwOTA2ODAzLCJleHAiOjE3MjA5OTMyMDN9.ge9OQq7Hick6dGwCm2jz1dyqMaZw301nSSFtWtxllOM";
-      _dios.options.headers = {
-        "Authorization":
-        "Bearer $token"};
-      
+      _dios.options.headers = {"Authorization": "Bearer $token"};
     }
   }
 
@@ -28,9 +21,9 @@ class Api {
 
       Response response = await _dios.get(endpoint,
           options: Options(
-              contentType: Headers.jsonContentType,
-              responseType: ResponseType.json,
-             )
+              // contentType: Headers.jsonContentType,
+              // responseType: ResponseType.json,
+              )
           // queryParameters: headers,
           );
 
@@ -42,14 +35,12 @@ class Api {
 
   Future<Response?> post({
     required String endpoint,
-    required var body,
+     var body,
     String? token,
   }) async {
     Map<String, dynamic> headers = {};
     if (token != null) {
-      headers.addAll({"Authorization": "Bearer $token"
-     
-      });
+      headers.addAll({"Authorization": "Bearer $token"});
     }
     try {
       Response response = await _dios.post(endpoint,

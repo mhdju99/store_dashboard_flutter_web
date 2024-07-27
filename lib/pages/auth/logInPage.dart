@@ -25,7 +25,6 @@ class LogIn extends StatelessWidget {
             alignment: Alignment.center,
             width: 400,
             child: Card(
-            
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
