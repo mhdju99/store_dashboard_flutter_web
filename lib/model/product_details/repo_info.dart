@@ -39,8 +39,8 @@ class RepoInfo1 {
         lastAddQuantity: json['lastAddQuantity'] as int?,
         salesQuantity: json['salesQuantity'] as int?,
         // invoice: (json['invoice'] as List<dynamic>?)
-            // ?.map((e) => Invoice.fromJson(e as Map<String, dynamic>))
-            // .toList(),
+        // ?.map((e) => Invoice.fromJson(e as Map<String, dynamic>))
+        // .toList(),
         productId: json['productId'] as String?,
         totalQuantity: json['totalQuantity'] as int?,
         currantQuantity: json['currantQuantity'] as int?,

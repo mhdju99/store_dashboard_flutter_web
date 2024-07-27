@@ -35,7 +35,7 @@ class Api {
 
   Future<Response?> post({
     required String endpoint,
-    required var body,
+     var body,
     String? token,
   }) async {
     Map<String, dynamic> headers = {};

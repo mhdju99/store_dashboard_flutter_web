@@ -80,9 +80,9 @@ class invoice extends StatelessWidget {
                             String product =
                                 pp.Findproduct(cc.invoices[index].productId!)
                                     .toString();
-                            String supplier =
-                                ss.FindSupplaerName(cc.invoices[index].supplierId!)
-                                    .toString();
+                            String supplier = ss.FindSupplaerName(
+                                    cc.invoices[index].supplierId!)
+                                .toString();
                             return InkWell(
                               onTap: () {
                                 invoice_info_dialog(

@@ -8,5 +8,6 @@ class EndPoints {
   static const String invoice_endpoint = '${baseUrl}invoice';
   static const String product_endpoint = '${baseUrl}product';
   static const String repo_endpoint = '${baseUrl}repo';
+  static const String vison_endpoint = 'http://192.168.1.6:8000/upload-files/process-inventory/';
 }
 

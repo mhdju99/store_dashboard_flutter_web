@@ -59,14 +59,12 @@ class inventoryService {
     }
   }
 
-   Future<bool> Addquantity(Map<String,dynamic> data,String id) async {
-  var response =
-        await Api().put(endpoint: '$_endpointrepo/$id', body: data);
-
+  Future<bool> Addquantity(Map<String, dynamic> data, String id) async {
+    var response = await Api().put(endpoint: '$_endpointrepo/$id', body: data);
 
     if (response != null) {
       // if (response.statusCode == 200 || response.statusCode == 201) {
-        return true;
+      return true;
       // } else {
       //   return false;
       // }

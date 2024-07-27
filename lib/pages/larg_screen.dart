@@ -11,6 +11,7 @@ import 'package:store_dashbord/pages/Order/order.dart';
 import 'package:store_dashbord/pages/brands/brands.dart';
 import 'package:store_dashbord/pages/category/category.dart';
 import 'package:store_dashbord/pages/inventory/inventory.dart';
+import 'package:store_dashbord/pages/repository/repository.dart';
 import 'package:store_dashbord/pages/invoice/invoice.dart';
 import 'package:store_dashbord/pages/overview/overview.dart';
 import 'package:store_dashbord/pages/overview/page2.dart';
@@ -53,6 +54,10 @@ class LargScreen extends StatelessWidget {
     SidebarItem(
       icon: Icons.shopping_cart_outlined,
       text: 'orders',
+    ),
+    SidebarItem(
+      icon: Icons.receipt_outlined,
+      text: 'repository',
     ),
     SidebarItem(
       icon: Icons.receipt_outlined,
@@ -133,6 +138,7 @@ class LargScreen extends StatelessWidget {
                       suplayer(),
                       invoice(),
                       Order(),
+                      repository(),
                       inventory()
                     ],
                   ),
@@ -151,6 +157,7 @@ class LargScreen extends StatelessWidget {
                 invoice(),
                 Order(),
 
+                repository(),
                 inventory()
               ],
             )),

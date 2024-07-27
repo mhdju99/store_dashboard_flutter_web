@@ -45,7 +45,7 @@ class ProductController extends GetxController {
   }
 
   String? Findproduct(String id) {
-    int index = product.indexWhere((element) => element.id!.contains(id));
+    int index = product.indexWhere((element) => element.id.contains(id));
     String? suplayerName = product[index].title;
 
     return suplayerName;
@@ -130,7 +130,7 @@ class ProductController extends GetxController {
           bytes2,
           filename: image2.value!.name,
         ),
-        'boxlmages': d.MultipartFile.fromBytes(
+        'boxImages': d.MultipartFile.fromBytes(
           bytes3,
           filename: image3.value!.name,
         ),

@@ -226,42 +226,42 @@ class products extends StatelessWidget {
                   data: data.description,
                 ),
                 const SizedBox(height: 50),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Get.back();
-                    Get.defaultDialog(
-                        title: ' Alert',
-                        middleText: 'Do you want to close?',
-                        onConfirm: () {
-                          ProductController cc = Get.find<ProductController>();
-                          Get.back();
+                // ElevatedButton.icon(
+                //   onPressed: () {
+                //     Get.back();
+                //     Get.defaultDialog(
+                //         title: ' Alert',
+                //         middleText: 'Do you want to close?',
+                //         onConfirm: () {
+                //           ProductController cc = Get.find<ProductController>();
+                //           Get.back();
 
-                          cc.del(data.id);
-                        },
-                        textConfirm: 'yes',
-                        confirmTextColor: Colors.amberAccent,
-                        textCancel: 'no');
-                  },
-                  style: ButtonStyle(
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      )),
-                      side: WidgetStateProperty.all(BorderSide.none),
-                      textStyle: WidgetStateProperty.all(
-                          const TextStyle(color: Colors.white)),
-                      backgroundColor: WidgetStateProperty.all(Colors.red)),
-                  icon: const Icon(
-                    // <-- Icon
-                    Icons.delete,
-                    size: 24.0,
-                    color: Colors.white,
-                  ),
-                  label: const Text(
-                    'Remove Suplayer',
-                    style: TextStyle(color: Colors.white),
-                  ), // <-- Text
-                )
+                //           cc.del(data.id);
+                //         },
+                //         textConfirm: 'yes',
+                //         confirmTextColor: Colors.amberAccent,
+                //         textCancel: 'no');
+                //   },
+                //   style: ButtonStyle(
+                //       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                //           const RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.zero,
+                //       )),
+                //       side: WidgetStateProperty.all(BorderSide.none),
+                //       textStyle: WidgetStateProperty.all(
+                //           const TextStyle(color: Colors.white)),
+                //       backgroundColor: WidgetStateProperty.all(Colors.red)),
+                //   icon: const Icon(
+                //     // <-- Icon
+                //     Icons.delete,
+                //     size: 24.0,
+                //     color: Colors.white,
+                //   ),
+                //   label: const Text(
+                //     'Remove Suplayer',
+                //     style: TextStyle(color: Colors.white),
+                //   ), // <-- Text
+                // )
               ],
             ),
           ),

@@ -61,7 +61,7 @@ class ProductService {
   Future<bool> Addproduct(var productitem) async {
     Response? response =
         await Api().post(endpoint: _endpoint, body: productitem);
-        
+
     print("Rtretet $response");
     if (response != null) {
       if (response.statusCode == 200 || response.statusCode == 201) {

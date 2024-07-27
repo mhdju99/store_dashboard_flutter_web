@@ -22,7 +22,6 @@ class ProductDetails {
       brand: json['brand'] == null
           ? null
           : Brand1.fromJson(json['brand'] as Map<String, dynamic>),
-      
       repoInfo: json['repoInfo'] == null
           ? null
           : RepoInfo1.fromJson(json['repoInfo'] as Map<String, dynamic>),

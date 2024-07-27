@@ -13,7 +13,7 @@ import 'package:store_dashbord/service/suplayerService.dart';
 import 'package:store_dashbord/service/visionService.dart';
 import 'package:store_dashbord/widgets/customText.dart';
 
-class inventoryController extends GetxController
+class visionController extends GetxController
     with GetSingleTickerProviderStateMixin {
   int? Quantity, numberOfBox, productInBox, price;
   String? suplaier;
@@ -37,6 +37,7 @@ class inventoryController extends GetxController
   void onInit() {
     super.onInit();
     fetchProduct();
+    fetch_vesion();
     controller = TabController(vsync: this, length: myTabs.length);
   }
 
