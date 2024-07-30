@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:store_dashbord/constants/style.dart';
+import 'package:store_dashbord/controllers/productController.dart';
 import 'package:store_dashbord/helper/responsiveness.dart';
 import 'package:store_dashbord/pages/overview/widget/card_larg.dart';
 import 'package:store_dashbord/pages/overview/widget/card_long.dart';
@@ -26,11 +28,13 @@ class Overview extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20),
-          child: !ResponsiveWidget.isSmallScreen(context)
-              ? largc(width: width)
-              : smallc(width: width),
-        )
+            padding: const EdgeInsets.only(top: 20, left: 20),
+            child: largc(width: width)
+
+            // !ResponsiveWidget.isSmallScreen(context)
+            //     ? largc(width: width)
+            //     : smallc(width: width),
+            )
       ],
     );
   }
@@ -48,6 +52,7 @@ class largc extends StatelessWidget {
     super.key,
     required this.width,
   });
+  ProductController jj = Get.put(ProductController());
 
   final double width;
 
@@ -67,24 +72,32 @@ class largc extends StatelessWidget {
                   // scrollDirection: Axis.horizontal,
                   children: [
                     CardLarg(
+                      header: "Number of user",
+                      value: "7",
                       color: CN1,
                     ),
                     SizedBox(
                       width: width / 80,
                     ),
                     CardLarg(
+                      header: "products",
+                      value: "3",
                       color: CN2,
                     ),
                     SizedBox(
                       width: width / 80,
                     ),
                     CardLarg(
+                      header: "Profits",
+                      value: "\$20000",
                       color: P1,
                     ),
                     SizedBox(
                       width: width / 80,
                     ),
                     CardLarg(
+                      header: "Daily Profits",
+                      value: "\$900",
                       color: CN3,
                     ),
                     SizedBox(
@@ -102,62 +115,86 @@ class largc extends StatelessWidget {
                   children: [
                     card_long(
                       p: 0.6,
-                      chaild: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: DataTable(
-                            dataRowColor: WidgetStateProperty.all(Colors.white),
-                            headingTextStyle: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 12),
-                            columnSpacing: 40,
-                            decoration: const BoxDecoration(
-                              // border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)),
+                      chaild: Column(
+                        children: [
+                          Expanded(
+                            child: Card(
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Column(
+                                  children: [
+                                    const Text("top 3 product"),
+                                    Center(
+                                      child: Obx(() {
+                                        if (!jj.loading.value) {
+                                          return jj.product.isNotEmpty
+                                              ? ListView.builder(
+                                                  shrinkWrap: true,
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 5),
+                                                  itemCount: jj.product.length,
+                                                  itemBuilder: (con, index) {
+                                                    var pp = jj.product;
+                                                    return ListTile(
+                                                      leading: SizedBox(
+                                                          child: SizedBox(
+                                                              width: 40,
+                                                              height: 40,
+                                                              child: Image.network(pp[
+                                                                      index]
+                                                                  .imageCovered
+                                                                  .toString()))),
+                                                      title:
+                                                          Text(pp[index].title),
+                                                    );
+                                                  })
+                                              : const Center(
+                                                  child: Text("no data"));
+                                        } else {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        }
+                                      }),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-
-                            // Datatable widget that have the property columns and rows.
-                            columns: const [
-                              // Set the name of the column
-                              DataColumn(
-                                label: Text('ID'),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(
+                            child: Card(
+                              child: Center(
+                                child: ListView(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  children: [
+                                    const Text("Most purchased users"),
+                                    const ListTile(
+                                      leading: SizedBox(
+                                          child: SizedBox(
+                                              width: 40,
+                                              height: 40,
+                                              child: Icon(Icons.person))),
+                                      title: Text("jomaat"),
+                                    ),
+                                    ListTile(
+                                      leading: SizedBox(
+                                          child: SizedBox(
+                                              width: 40,
+                                              height: 40,
+                                              child: Icon(Icons.person))),
+                                      title: const Text("Eyad"),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              DataColumn(
-                                label: Text('Name'),
-                              ),
-                              DataColumn(
-                                label: Text('LastName'),
-                              ),
-                              DataColumn(
-                                label: Text('Age'),
-                              ),
-                              DataColumn(
-                                label: Text('action'),
-                              )
-                            ],
-                            rows: [
-                              // Set the values to the columns
-                              DataRow(selected: true, cells: [
-                                const DataCell(Text("1")),
-                                const DataCell(Text("Alex")),
-                                const DataCell(Text("Anderson")),
-                                const DataCell(Text("18")),
-                                DataCell(IconButton(
-                                  icon: const Icon(Icons.add),
-                                  onPressed: () {},
-                                )),
-                              ]),
-                              DataRow(cells: [
-                                const DataCell(Text("2")),
-                                const DataCell(Text("John")),
-                                const DataCell(Text("Anderson")),
-                                const DataCell(Text("24")),
-                                DataCell(IconButton(
-                                  icon: const Icon(Icons.add),
-                                  onPressed: () {},
-                                ))
-                              ]),
-                            ]),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     SizedBox(
@@ -165,7 +202,68 @@ class largc extends StatelessWidget {
                     ),
                     card_long(
                       p: 0.6,
-                      chaild: Text("data"),
+                      chaild: const Column(
+                        children: [
+                          Expanded(
+                            child: Card(
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        "There is no out of stock product",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(
+                                        Icons.gpp_good_outlined,
+                                        size: 100,
+                                        color: Colors.green,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(
+                            child: Card(
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        "There is no difference in quantities.",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Icon(
+                                        Icons.gpp_good_outlined,
+                                        size: 100,
+                                        color: Colors.green,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: width / 80,
                     )
                     // const CardLarg(),
                     // SizedBox(
@@ -277,56 +375,56 @@ class largc extends StatelessWidget {
   }
 }
 
-class smallc extends StatelessWidget {
-  const smallc({
-    super.key,
-    required this.width,
-  });
+// class smallc extends StatelessWidget {
+//   const smallc({
+//     super.key,
+//     required this.width,
+//   });
 
-  final double width;
+//   final double width;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            CardLarg(
-              color: CN1,
-            ),
-            SizedBox(
-              width: width / 60,
-            ),
-            CardLarg(
-              color: CN2,
-            ),
-            SizedBox(
-              width: width / 60,
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          children: [
-            CardLarg(
-              color: P1,
-            ),
-            SizedBox(
-              width: width / 60,
-            ),
-            CardLarg(
-              color: CN3,
-            ),
-            SizedBox(
-              width: width / 60,
-            ),
-          ],
-        )
-      ],
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Row(
+//           children: [
+//             CardLarg(
+//               color: CN1,
+//             ),
+//             SizedBox(
+//               width: width / 60,
+//             ),
+//             CardLarg(
+//               color: CN2,
+//             ),
+//             SizedBox(
+//               width: width / 60,
+//             ),
+//           ],
+//         ),
+//         const SizedBox(
+//           height: 20,
+//         ),
+//         Row(
+//           children: [
+//             CardLarg(
+//               color: P1,
+//             ),
+//             SizedBox(
+//               width: width / 60,
+//             ),
+//             CardLarg(
+//               color: CN3,
+//             ),
+//             SizedBox(
+//               width: width / 60,
+//             ),
+//           ],
+//         )
+//       ],
+//     );
+//   }
 //     Row(
 //       // scrollDirection: Axis.horizontal,
 //       children: [
@@ -350,7 +448,7 @@ class smallc extends StatelessWidget {
 //     );
 //   }
 // }
-}
+// }
 
 class CountList {
   CountList(this.status, this.number, this.x);
@@ -359,3 +457,65 @@ class CountList {
   final int number;
   final Color x;
 }
+// long(
+//                       p: 0.6,
+//                       chaild: Padding(
+//                         padding: const EdgeInsets.all(8.0),
+//                         child: DataTable(
+//                             dataRowColor: WidgetStateProperty.all(Colors.white),
+//                             headingTextStyle: const TextStyle(
+//                                 fontWeight: FontWeight.bold, fontSize: 12),
+//                             columnSpacing: 40,
+//                             decoration: const BoxDecoration(
+//                               // border: Border.all(color: Colors.grey),
+//                               borderRadius: BorderRadius.only(
+//                                   topLeft: Radius.circular(20),
+//                                   topRight: Radius.circular(20)),
+//                             ),
+
+//                             // Datatable widget that have the property columns and rows.
+//                             columns: const [
+//                               // Set the name of the column
+//                               DataColumn(
+//                                 label: Text('ID'),
+//                               ),
+//                               DataColumn(
+//                                 label: Text('Name'),
+//                               ),
+//                               DataColumn(
+//                                 label: Text('LastName'),
+//                               ),
+//                               DataColumn(
+//                                 label: Text('Age'),
+//                               ),
+//                               DataColumn(
+//                                 label: Text('action'),
+//                               )
+//                             ],
+//                             rows: [
+//                               // Set the values to the columns
+//                               DataRow(selected: true, cells: [
+//                                 const DataCell(Text("1")),
+//                                 const DataCell(Text("Alex")),
+//                                 const DataCell(Text("Anderson")),
+//                                 const DataCell(Text("18")),
+//                                 DataCell(IconButton(
+//                                   icon: const Icon(Icons.add),
+//                                   onPressed: () {},
+//                                 )),
+//                               ]),
+//                               DataRow(cells: [
+//                                 const DataCell(Text("2")),
+//                                 const DataCell(Text("John")),
+//                                 const DataCell(Text("Anderson")),
+//                                 const DataCell(Text("24")),
+//                                 DataCell(IconButton(
+//                                   icon: const Icon(Icons.add),
+//                                   onPressed: () {},
+//                                 ))
+//                               ]),
+//                             ]),
+//                       ),
+//                     )
+
+

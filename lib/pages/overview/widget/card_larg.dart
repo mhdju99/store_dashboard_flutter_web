@@ -7,9 +7,13 @@ import 'package:store_dashbord/constants/style.dart';
 
 class CardLarg extends StatelessWidget {
   Color color;
+  String header;
+  String value;
   CardLarg({
     Key? key,
     required this.color,
+    required this.header,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -50,15 +54,15 @@ class CardLarg extends StatelessWidget {
           //     Colors.amber,
           //   ],
         ),
-        child: const Column(
+        child:  Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Total sails',
+              header,
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
-            Text('14',
+            Text(value,
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,

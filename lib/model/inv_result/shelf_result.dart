@@ -1,13 +1,13 @@
 
 class ShelfResult {
-  String? date;
+ Map<String, dynamic>? objects;
   String? shelf;
   String? resultImage;
 
-  ShelfResult({this.date, this.shelf, this.resultImage, });
+  ShelfResult({this.objects, this.shelf, this.resultImage, });
 
   factory ShelfResult.fromJson(Map<String, dynamic> json) => ShelfResult(
-        date: json['date'] as String?,
+        objects: json["objects"],
         shelf: json['shelf'] as String?,
         resultImage: json['result_image'] as String?,
      

@@ -292,30 +292,27 @@ class tabel extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: CustomText(
-                                                text: "order status",
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 20,
-                                            ),
-                                            Expanded(
-                                              child: dropDown(
-                                                genderItems: const [
-                                                  "sadas",
-                                                  "Asdas"
-                                                ],
-                                                name: "brands",
-                                              ),
-                                            ),
-                                          ],
-                                        )
                                       ],
                                     ),
                                   ),
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: CustomText(
+                                        text: "order status",
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      child: dropDown(
+                                        genderItems: const ["sadas", "Asdas"],
+                                        name: "brands",
+                                      ),
+                                    ),
+                                  ],
                                 )
                               ],
                             ),

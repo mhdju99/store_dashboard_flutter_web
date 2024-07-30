@@ -3,14 +3,14 @@ import 'package:dio/dio.dart';
 import 'package:store_dashbord/constants/end_points.dart';
 import 'package:store_dashbord/helper/api.dart';
 import 'package:store_dashbord/model/inv_result/inv_result.dart';
-import 'package:store_dashbord/model/poduct_model.dart';
-import 'package:store_dashbord/model/product_details/product_details.dart';
 
 class visionService {
   final String _endpoint = EndPoints.vison_endpoint;
 
   Future<InvResult> getProductDEtails() async {
-    Response? response = await Api().post(endpoint: _endpoint, body: {});
+    Response? response = await Api().get(
+      endpoint: _endpoint,
+    );
     print("response is $response");
 
     InvResult? dataList;
@@ -21,8 +21,9 @@ class visionService {
           response.statusCode == 304) {
         Map<String, dynamic> data = response.data;
 
-        Map<String, dynamic> item = data["data"];
-        dataList = InvResult.fromJson(item);
+        // Map<String, dynamic> item = data;
+        dataList = InvResult.fromJson(data);
+        print("dataList   $dataList");
 
         return dataList;
       } else {

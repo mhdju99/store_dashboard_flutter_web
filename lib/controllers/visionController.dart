@@ -21,28 +21,38 @@ class visionController extends GetxController
   final _productLIst = <ProductData>[].obs;
   List<ProductData> get product => _productLIst;
 
+  final _inventoryList = <InvResult>[].obs;
+  List<InvResult> get inventoryList => _inventoryList;
+
   final _not_added = <ProductData>[].obs;
   List<ProductData> get not_added => _not_added;
-  var vison = InvResult().obs;
-
+  final _vison = InvResult().obs;
+  InvResult get Get_vison => _vison.value;
   var loading = F.obs;
+  var loading_vison = F.obs;
+  var loading_h_vison = F.obs;
+  var isOriginalContent = true.obs;
+
   final List<Tab> myTabs = <Tab>[
-    const Tab(text: 'All '),
-    const Tab(text: 'not added'),
-    const Tab(text: 'Low stock '),
-    const Tab(text: 'top'),
+    const Tab(text: 'Manual Inventory'),
+    const Tab(text: 'Auto Inventory'),
+    const Tab(text: 'Lnventory Log '),
   ];
 
   @override
   void onInit() {
     super.onInit();
     fetchProduct();
-    fetch_vesion();
+
     controller = TabController(vsync: this, length: myTabs.length);
   }
 
-  List tolists(Map m) {
-    List<Map<String, dynamic>> p = m.entries.map((toElement) {
+  void toggleContent() {
+    isOriginalContent.value = !isOriginalContent.value;
+  }
+
+  List tolists(Map<String, dynamic>? m) {
+    List<Map<String, dynamic>> p = m!.entries.map((toElement) {
       return {"id": toElement.key, "q": toElement.value};
     }).toList();
     return p;
@@ -58,23 +68,33 @@ class visionController extends GetxController
       loading(T);
       var data = await inventoryService().getProduct();
       if (data != null) {
-        _productLIst.value =
-            data.where((e) => e.repoInfo.currantQuantity >= 0).toList();
-        _not_added.value =
-            data.where((e) => e.repoInfo.currantQuantity < 100).toList();
+        _productLIst.value = data;
+
       }
     } finally {
       loading(F);
     }
   }
 
+  void fetch_inventory_Hestory() async {
+    try {
+      loading_h_vison(T);
+      var data = await inventoryService().getInv_Result_history();
+      if (data != null) {
+        _inventoryList.value = data;
+      }
+    } finally {
+      loading_h_vison(F);
+    }
+  }
+
   void fetch_vesion() async {
     try {
-      loading(T);
+      loading_vison(T);
       var data = await visionService().getProductDEtails();
-      vison.value = data;
+      _vison.value = data;
     } finally {
-      loading(F);
+      loading_vison(F);
     }
   }
 
