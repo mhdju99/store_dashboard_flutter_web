@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:store_dashbord/constants/style.dart';
 import 'package:store_dashbord/controllers/auth_viewnodel.dart';
 import 'package:store_dashbord/pages/auth/signUpPage.dart';
 import 'package:store_dashbord/pages/overview/widget/buttonText.dart';
@@ -32,13 +33,26 @@ class LogIn extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  const Text(
-                    "Log In",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 33,
-                      fontFamily: "Metropolis",
-                      fontWeight: FontWeight.w900,
+                  Container(
+                    child:  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.control_camera_sharp,
+                          size: 100,
+                          color: CN3,
+                        ),
+                        Text(
+                          "admin Dashboard",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 33,
+                            fontFamily: "Metropolis",
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(
@@ -86,28 +100,7 @@ class LogIn extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          height: 18,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Get.to(SignUP());
-                              },
-                              child: const Text(
-                                "Don't have an account? ➡",
-                                textAlign: TextAlign.end,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.red,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 15,
+                          height: 30,
                         ),
                         GetX<AuthController>(builder: (controlar) {
                           return CustomButton(
@@ -130,26 +123,6 @@ class LogIn extends StatelessWidget {
                         const SizedBox(
                           height: 100,
                         ),
-                        const Text(
-                          "Or log in with social account",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Metropolis",
-                            fontWeight: FontWeight.w200,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Brand(Brands.google),
-                            ),
-                            IconButton(
-                                onPressed: () {}, icon: Brand(Brands.facebook)),
-                          ],
-                        )
                       ],
                     ),
                   )

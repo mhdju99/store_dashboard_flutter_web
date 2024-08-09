@@ -92,13 +92,13 @@ class category extends StatelessWidget {
 
     return Get.defaultDialog(
       title: "ADD category",
-      content: Expanded(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          width: 600,
-          child: Form(
-            key: formkey,
-            child: SingleChildScrollView(
+      content: Container(
+        padding: const EdgeInsets.all(16),
+        width: 400,
+        child: Form(
+          key: formkey,
+          child: SingleChildScrollView(
+            child: Expanded(
               child: Column(
                 children: [
                   CustomTextField(
@@ -108,7 +108,7 @@ class category extends StatelessWidget {
                     },
                   ),
                   const SizedBox(
-                    height: 7,
+                    height: 20,
                   ),
                 ],
               ),
