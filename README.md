@@ -9,7 +9,8 @@ A project using "  flutter web   "  for managing e_commercal app  and  warehouse
 
 
 
-<img src="https://github.com/user-attachments/assets/844522d1-4739-4738-81c0-f6ac1962d7b6" width="700">
+<img src="![image](https://github.com/user-attachments/assets/6d0fc1eb-a345-4bb9-bf73-f011ffe09275)
+" width="700">
 
 
 
@@ -17,7 +18,8 @@ A project using "  flutter web   "  for managing e_commercal app  and  warehouse
 
 
 
-<img src="https://github.com/user-attachments/assets/3eaf2620-9dfe-4ed8-8ed4-c1fefa5af6e6" width="700">  
+<img src="![image](https://github.com/user-attachments/assets/8bf81365-8f2f-4dae-a8e2-0f3a6e357e47)
+" width="700">  
 
 # add product :
 
@@ -114,7 +116,15 @@ A project using "  flutter web   "  for managing e_commercal app  and  warehouse
 
 # inventory page :
 
-<img src="https://github.com/user-attachments/assets/278e12e2-e8bc-4b33-98b4-e1dad816f7e9" width="700">
+<img src="![image](https://github.com/user-attachments/assets/98f6d619-cdfa-492d-8202-2a975786c3bd)
+" width="700">
+
+<img src="![image](https://github.com/user-attachments/assets/17629767-3d57-4aea-af8d-0aeca4c01382)
+" width="700">
+
+<img src="![image](https://github.com/user-attachments/assets/598f96ea-588e-4f2f-9cd2-26862547e9ff)
+
+" width="700">
 
 
 
