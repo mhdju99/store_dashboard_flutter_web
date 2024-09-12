@@ -123,7 +123,6 @@ A project using "  flutter web   "  for managing e_commercal app  and  warehouse
 " width="700">
 
 <img src="![image](https://github.com/user-attachments/assets/598f96ea-588e-4f2f-9cd2-26862547e9ff)
-
 " width="700">
 
 
